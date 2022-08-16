@@ -1,9 +1,24 @@
 <script>
   import ToDoList from "./components/ToDoList.vue"
+  import Modal from "./components/Modal.vue"
 
   export default 
   {
-    components: { ToDoList }
+    components: { ToDoList, Modal },
+    data(){
+      return {
+        showModal: false
+      }
+    },
+    methods: {
+      openModal(){
+        this.showModal = true
+      },
+
+      exitModal(){
+        this.showModal = false
+      }
+    }
   }
 </script>
 
@@ -14,6 +29,8 @@
 
   <main>
     <ToDoList />
+    <button @click="openModal">Open modal</button>
+    <Modal v-if="showModal" @close="exitModal"/>
   </main>
 </template>
 
