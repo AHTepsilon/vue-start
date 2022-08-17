@@ -85,5 +85,5 @@ export default {
   </ul>
 </template>
 
-<style>
+<style scoped lang="scss">
 </style>

@@ -1,16 +1,21 @@
     <template>
         <div class="backdrop" @click="click('normal click')" @click.self="exitModal()">
             <aside class="modal-container">
-                <h1>Hello, I'm a modal</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui nihil ab minus. Ipsum porro earum iusto vel culpa, quam similique nemo id ab, officia, maxime eaque sapiente odit distinctio dignissimos!</p>
+                <h1 :class="titleClass">{{ title }}</h1>
+                <slot><p>Not found</p></slot>
 
                 <button @click="exitModal">x</button>
+                <slot name="links"></slot>
             </aside>
         </div>
     </template>
 
     <script>
         export default {
+            props: {
+                title: String,
+                titleColor: String
+            },
             methods: {
                 click(message){
                     console.log(message);
@@ -19,11 +24,16 @@
                 exitModal(){
                     this.$emit('close');
                 }
+            },
+            computed: {
+                titleClass() {
+                    return `title--${this.titleColor}`
+                }
             }
         }
     </script>
 
-    <style>
+    <style scoped lang="scss">
         .backdrop{
             background-color: rgba(0, 0, 0, 0.5);
             width: 100%;
@@ -35,6 +45,14 @@
             top: 0;
             bottom: 0;
             left: 0;
+        }
+
+        .title--red {
+            color: red;
+        }
+
+        .title--blue{
+            color: blue;
         }
 
         .modal-container{

@@ -7,7 +7,9 @@
     components: { ToDoList, Modal },
     data(){
       return {
-        showModal: false
+        showModal: false,
+        redTitle: "Red",
+        blueTitle: "Blue"
       }
     },
     methods: {
@@ -30,7 +32,9 @@
   <main>
     <ToDoList />
     <button @click="openModal">Open modal</button>
-    <Modal v-if="showModal" @close="exitModal"/>
+    <Modal titleColor="redTitle" title="Hello, I'm a Modal" v-if="showModal" @close="exitModal">
+    <p>Lorem, ipsum dolor sit <a href="/"> amet consectetur </a> adipisicing elit. Sequi nihil minus libero deserunt dolor natus cupiditate aliquid earum tempora! Dolor sunt illo omnis aliquid recusandae possimus deleniti nostrum nesciunt ad.</p>  
+    </Modal>
   </main>
 </template>
 
